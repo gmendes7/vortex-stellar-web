@@ -22,9 +22,9 @@ export const Footer = () => {
             VORTEX
           </h3>
           
-          {/* Tagline */}
+          {/* Updated Tagline */}
           <p className="text-xl md:text-2xl text-vortex-neon font-orbitron font-bold mb-8 text-glow-neon">
-            Energia que transcende galáxias.
+            Energia que colapsa estrelas, move sua rotina.
           </p>
 
           {/* Contact */}
