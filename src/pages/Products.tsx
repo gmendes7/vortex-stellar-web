@@ -73,7 +73,7 @@ const Products = () => {
                   <SelectValue placeholder="Categoria" />
                 </SelectTrigger>
                 <SelectContent className="bg-vortex-dark border-vortex-neon/30 text-white">
-                  <SelectItem value="">Todas</SelectItem>
+                  <SelectItem value="all">Todas</SelectItem>
                   {categories.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category}
@@ -117,7 +117,7 @@ const Products = () => {
                   Busca: {searchTerm}
                 </Badge>
               )}
-              {categoryFilter && (
+              {categoryFilter && categoryFilter !== 'all' && (
                 <Badge variant="secondary" className="bg-vortex-purple/20 text-vortex-neon">
                   {categoryFilter}
                 </Badge>
@@ -152,7 +152,7 @@ const Products = () => {
               <Button
                 onClick={() => {
                   setSearchTerm('');
-                  setCategoryFilter('');
+                  setCategoryFilter('all');
                   setShowPromotions(false);
                   setPriceRange([0, 15]);
                 }}

@@ -82,7 +82,7 @@ const mockProducts: Product[] = [
 
 export const useProducts = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('all');
   const [showPromotions, setShowPromotions] = useState(false);
   const [priceRange, setPriceRange] = useState([0, 15]);
 
@@ -90,7 +90,7 @@ export const useProducts = () => {
     return mockProducts.filter(product => {
       const matchesSearch = product.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            product.sabor.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = categoryFilter === '' || product.categoria === categoryFilter;
+      const matchesCategory = categoryFilter === 'all' || product.categoria === categoryFilter;
       const matchesPromotion = !showPromotions || product.promocao !== undefined;
       const matchesPrice = product.preco >= priceRange[0] && product.preco <= priceRange[1];
       
