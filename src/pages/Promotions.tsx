@@ -5,6 +5,7 @@ import { ProductCard } from '@/components/ProductCard';
 import { AuthModal } from '@/components/AuthModal';
 import { ParticlesBackground } from '@/components/ParticlesBackground';
 import { Footer } from '@/components/Footer';
+import { ChatBot } from '@/components/ChatBot';
 import { useProducts } from '@/hooks/useProducts';
 
 const Promotions = () => {
@@ -84,6 +85,7 @@ const Promotions = () => {
       </main>
 
       <Footer />
+      <ChatBot />
     </div>
   );
 };

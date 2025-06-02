@@ -4,6 +4,7 @@ import { Navbar } from '@/components/Navbar';
 import { AuthModal } from '@/components/AuthModal';
 import { ParticlesBackground } from '@/components/ParticlesBackground';
 import { Footer } from '@/components/Footer';
+import { ChatBot } from '@/components/ChatBot';
 
 const About = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -111,6 +112,7 @@ const About = () => {
       </main>
 
       <Footer />
+      <ChatBot />
     </div>
   );
 };

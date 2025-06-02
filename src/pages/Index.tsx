@@ -6,6 +6,7 @@ import { AuthModal } from "@/components/AuthModal";
 import { ProductCard } from "@/components/ProductCard";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
 import { Footer } from "@/components/Footer";
+import { ChatBot } from "@/components/ChatBot";
 import { Button } from "@/components/ui/button";
 import { useProducts } from "@/hooks/useProducts";
 
@@ -93,6 +94,7 @@ const Index = () => {
       </section>
 
       <Footer />
+      <ChatBot />
     </div>
   );
 };

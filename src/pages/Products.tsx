@@ -1,10 +1,10 @@
-
 import { useState } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { ProductCard } from '@/components/ProductCard';
 import { AuthModal } from '@/components/AuthModal';
 import { ParticlesBackground } from '@/components/ParticlesBackground';
 import { Footer } from '@/components/Footer';
+import { ChatBot } from '@/components/ChatBot';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -170,6 +170,7 @@ const Products = () => {
       </main>
 
       <Footer />
+      <ChatBot />
     </div>
   );
 };
