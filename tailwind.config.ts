@@ -13,12 +13,19 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: '1rem',
 			screens: {
+				'sm': '640px',
+				'md': '768px',
+				'lg': '1024px',
+				'xl': '1280px',
 				'2xl': '1400px'
 			}
 		},
 		extend: {
+			screens: {
+				'xs': '475px',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -71,6 +78,21 @@ export default {
 			fontFamily: {
 				'orbitron': ['Orbitron', 'monospace'],
 				'inter': ['Inter', 'sans-serif'],
+			},
+			fontSize: {
+				'xs': ['0.75rem', { lineHeight: '1rem' }],
+				'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+				'base': ['1rem', { lineHeight: '1.5rem' }],
+				'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+				'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+				'2xl': ['1.5rem', { lineHeight: '2rem' }],
+				'3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+				'4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+				'5xl': ['3rem', { lineHeight: '1' }],
+				'6xl': ['3.75rem', { lineHeight: '1' }],
+				'7xl': ['4.5rem', { lineHeight: '1' }],
+				'8xl': ['6rem', { lineHeight: '1' }],
+				'9xl': ['8rem', { lineHeight: '1' }],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -131,6 +153,20 @@ export default {
 					'50%': {
 						textShadow: '0 0 10px #00FFAA, 0 0 20px #00FFAA, 0 0 30px #00FFAA'
 					}
+				},
+				'mobile-bounce': {
+					'0%, 20%, 53%, 80%, 100%': {
+						transform: 'translate3d(0,0,0)'
+					},
+					'40%, 43%': {
+						transform: 'translate3d(0, -5px, 0)'
+					},
+					'70%': {
+						transform: 'translate3d(0, -3px, 0)'
+					},
+					'90%': {
+						transform: 'translate3d(0, -1px, 0)'
+					}
 				}
 			},
 			animation: {
@@ -139,7 +175,8 @@ export default {
 				'supernova': 'supernova 2s ease-out',
 				'pulse-neon': 'pulse-neon 2s infinite',
 				'float': 'float 3s ease-in-out infinite',
-				'glow': 'glow 2s ease-in-out infinite alternate'
+				'glow': 'glow 2s ease-in-out infinite alternate',
+				'mobile-bounce': 'mobile-bounce 1s ease-in-out'
 			}
 		}
 	},
