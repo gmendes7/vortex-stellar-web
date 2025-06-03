@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { LazyImage } from '@/components/LazyImage';
+import { useCart } from '@/hooks/useCart';
+import { useToast } from '@/hooks/use-toast';
+import { ShoppingCart, Info } from 'lucide-react';
 import type { Product } from '@/hooks/useProducts';
 
 interface ProductCardProps {
@@ -11,9 +14,25 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [showIngredients, setShowIngredients] = useState(false);
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+  
   const hasPromotion = product.promocao !== undefined;
   const finalPrice = hasPromotion ? product.promocao! : product.preco;
   const discountPercent = hasPromotion ? Math.round(((product.preco - product.promocao!) / product.preco) * 100) : 0;
+  const isLowStock = product.estoque <= 5 && product.estoque > 0;
+
+  const handleAddToCart = () => {
+    if (!product.emEstoque) return;
+    
+    addToCart(product);
+    toast({
+      title: "Produto adicionado!",
+      description: `${product.nome} foi adicionado ao carrinho.`,
+      duration: 2000,
+    });
+  };
 
   return (
     <div
@@ -21,11 +40,32 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Promotion Badge */}
-      {hasPromotion && (
-        <Badge className="absolute top-2 right-2 z-10 bg-vortex-neon text-vortex-dark font-bold text-xs">
-          -{discountPercent}%
-        </Badge>
+      {/* Badges Container */}
+      <div className="absolute top-2 right-2 z-10 flex flex-col gap-1">
+        {hasPromotion && (
+          <Badge className="bg-vortex-neon text-vortex-dark font-bold text-xs">
+            -{discountPercent}%
+          </Badge>
+        )}
+        {product.etiqueta && (
+          <Badge className={`text-xs font-bold ${
+            product.etiqueta === 'Novo' ? 'bg-green-500 text-white' :
+            product.etiqueta === 'Oferta' ? 'bg-red-500 text-white' :
+            product.etiqueta === '+Vendidos' ? 'bg-yellow-500 text-black' :
+            'bg-purple-500 text-white'
+          }`}>
+            {product.etiqueta}
+          </Badge>
+        )}
+      </div>
+
+      {/* Low Stock Warning */}
+      {isLowStock && (
+        <div className="absolute top-2 left-2 z-10">
+          <Badge className="bg-orange-500 text-white font-bold text-xs">
+            Restam {product.estoque}
+          </Badge>
+        </div>
       )}
 
       {/* Out of Stock Overlay */}
@@ -60,6 +100,25 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           {product.descricao}
         </p>
 
+        {/* Ingredients Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowIngredients(!showIngredients)}
+          className="text-xs text-gray-400 hover:text-vortex-neon p-0 h-auto"
+        >
+          <Info className="h-3 w-3 mr-1" />
+          {showIngredients ? 'Ocultar' : 'Ver'} ingredientes
+        </Button>
+
+        {/* Ingredients List */}
+        {showIngredients && (
+          <div className="text-xs text-gray-400 border-t border-white/10 pt-2">
+            <p className="font-medium text-gray-300 mb-1">Ingredientes:</p>
+            <p>{product.ingredientes.join(', ')}</p>
+          </div>
+        )}
+
         {/* Pricing */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
@@ -75,9 +134,11 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           
           <Button
             disabled={!product.emEstoque}
-            className="bg-gradient-to-r from-vortex-purple to-vortex-neon hover:from-vortex-neon hover:to-vortex-purple text-white font-bold px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105"
+            onClick={handleAddToCart}
+            className="bg-gradient-to-r from-vortex-purple to-vortex-neon hover:from-vortex-neon hover:to-vortex-purple text-white font-bold px-3 py-1 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:scale-105 flex items-center gap-1"
           >
-            {product.emEstoque ? 'Comprar' : 'Indisponível'}
+            <ShoppingCart className="h-3 w-3 sm:h-4 sm:w-4" />
+            {product.emEstoque ? 'Adicionar' : 'Indisponível'}
           </Button>
         </div>
       </div>

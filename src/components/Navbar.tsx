@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Cart } from '@/components/Cart';
 import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
@@ -17,8 +18,8 @@ export const Navbar = ({ onAuthClick }: NavbarProps) => {
     { name: 'Home', path: '/' },
     { name: 'Produtos', path: '/produtos' },
     { name: 'Promoções', path: '/promocoes' },
+    { name: 'Kits', path: '/kits' },
     { name: 'Sobre Nós', path: '/sobre' },
-    { name: 'Pilote seu Foguete', path: '/foguete' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -52,13 +53,16 @@ export const Navbar = ({ onAuthClick }: NavbarProps) => {
             ))}
           </div>
 
-          {/* Desktop Auth Button */}
-          <Button
-            onClick={onAuthClick}
-            className="hidden md:block bg-gradient-to-r from-vortex-purple to-vortex-neon hover:from-vortex-neon hover:to-vortex-purple text-white font-bold py-2 px-4 rounded-full"
-          >
-            Entrar / Cadastrar
-          </Button>
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Cart />
+            <Button
+              onClick={onAuthClick}
+              className="bg-gradient-to-r from-vortex-purple to-vortex-neon hover:from-vortex-neon hover:to-vortex-purple text-white font-bold py-2 px-4 rounded-full"
+            >
+              Entrar / Cadastrar
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -88,7 +92,10 @@ export const Navbar = ({ onAuthClick }: NavbarProps) => {
                     {item.name}
                   </Link>
                 ))}
-                <div className="border-t border-vortex-neon/30 pt-4">
+                <div className="border-t border-vortex-neon/30 pt-4 space-y-4">
+                  <div className="flex justify-center">
+                    <Cart />
+                  </div>
                   <Button
                     onClick={() => {
                       onAuthClick();

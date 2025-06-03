@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { ProductCard } from '@/components/ProductCard';
@@ -17,6 +18,7 @@ const Products = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const {
     filteredProducts,
+    categories,
     searchTerm,
     setSearchTerm,
     categoryFilter,
@@ -26,8 +28,6 @@ const Products = () => {
     priceRange,
     setPriceRange
   } = useProducts();
-
-  const categories = ['Energético', 'Premium'];
 
   return (
     <div className="min-h-screen bg-vortex-dark text-white relative overflow-x-hidden">
@@ -106,7 +106,7 @@ const Products = () => {
                 <Slider
                   value={priceRange}
                   onValueChange={setPriceRange}
-                  max={15}
+                  max={40}
                   min={0}
                   step={0.5}
                   className="w-full"
@@ -158,7 +158,7 @@ const Products = () => {
                   setSearchTerm('');
                   setCategoryFilter('all');
                   setShowPromotions(false);
-                  setPriceRange([0, 15]);
+                  setPriceRange([0, 40]);
                 }}
                 className="bg-gradient-to-r from-vortex-purple to-vortex-neon hover:from-vortex-neon hover:to-vortex-purple text-sm sm:text-base"
               >
