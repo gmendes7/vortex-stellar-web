@@ -8,19 +8,20 @@ export interface CartItem {
 }
 
 export const useCart = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-
-  // Carregar carrinho do localStorage na inicialização
-  useEffect(() => {
-    const savedCart = localStorage.getItem('vortex-cart');
-    if (savedCart) {
-      setCartItems(JSON.parse(savedCart));
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    // Inicializar com dados do localStorage
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('vortex-cart');
+      return savedCart ? JSON.parse(savedCart) : [];
     }
-  }, []);
+    return [];
+  });
 
   // Salvar carrinho no localStorage sempre que mudar
   useEffect(() => {
-    localStorage.setItem('vortex-cart', JSON.stringify(cartItems));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('vortex-cart', JSON.stringify(cartItems));
+    }
   }, [cartItems]);
 
   const addToCart = (product: Product, quantity: number = 1) => {

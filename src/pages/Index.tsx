@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { AuthModal } from "@/components/AuthModal";
 import { ProductCard } from "@/components/ProductCard";
 import { ParticlesBackground } from "@/components/ParticlesBackground";
+import { FloatingCans } from "@/components/FloatingCans";
 import { Footer } from "@/components/Footer";
 import { ChatBot } from "@/components/ChatBot";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-vortex-dark text-white relative overflow-x-hidden">
       <ParticlesBackground />
+      <FloatingCans />
       
       <Navbar onAuthClick={() => setIsAuthModalOpen(true)} />
 
@@ -42,25 +44,32 @@ const Index = () => {
               Energia que colapsa estrelas, move sua rotina.
             </p>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-vortex-neon mb-8 sm:mb-12 px-4">
-              Bem-vindo à VORTEX.
+              Bem-vindo à VORTEX ENERGY.
             </p>
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Mais assertivos */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center max-w-md mx-auto">
             <Link to="/produtos" className="w-full sm:w-auto">
-              <Button className="bg-gradient-to-r from-vortex-purple to-vortex-neon hover:from-vortex-neon hover:to-vortex-purple text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-base lg:text-lg transition-all duration-200 hover:scale-105 w-full">
-                Ver Produtos
+              <Button className="bg-gradient-to-r from-vortex-purple to-vortex-neon hover:from-vortex-neon hover:to-vortex-purple text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-base lg:text-lg transition-all duration-200 hover:scale-105 w-full shadow-lg hover:shadow-2xl">
+                🚀 COMPRE AGORA
               </Button>
             </Link>
             <Link to="/promocoes" className="w-full sm:w-auto">
               <Button 
                 variant="outline" 
-                className="border-vortex-neon text-vortex-neon hover:bg-vortex-neon hover:text-vortex-dark font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-base lg:text-lg transition-all duration-200 hover:scale-105 w-full"
+                className="border-2 border-vortex-neon text-vortex-neon hover:bg-vortex-neon hover:text-vortex-dark font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-sm sm:text-base lg:text-lg transition-all duration-200 hover:scale-105 w-full shadow-lg hover:shadow-2xl"
               >
-                Promoções
+                🔥 OFERTAS LIMITADAS
               </Button>
             </Link>
+          </div>
+
+          {/* Urgency Banner */}
+          <div className="mt-8 p-4 bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30 rounded-xl backdrop-blur-sm">
+            <p className="text-red-300 font-bold text-sm sm:text-base">
+              ⚡ PROMOÇÃO RELÂMPAGO: Até 40% OFF por tempo limitado!
+            </p>
           </div>
         </div>
       </section>
@@ -70,10 +79,10 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-orbitron font-bold text-transparent bg-clip-text bg-gradient-to-r from-vortex-purple to-vortex-neon mb-4">
-              Ofertas Estelares
+              🌟 MAIS VENDIDOS
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">
-              Descubra nossos energéticos em promoção. Explosões de sabor com preços que derrubam meteoros.
+              Energia de qualidade profissional. Resultados comprovados. Sabor extraterrestre.
             </p>
           </div>
 
@@ -85,8 +94,8 @@ const Index = () => {
 
           <div className="text-center">
             <Link to="/produtos">
-              <Button className="bg-gradient-to-r from-vortex-purple to-vortex-neon hover:from-vortex-neon hover:to-vortex-purple text-white font-bold py-3 px-6 sm:px-8 rounded-full text-sm sm:text-base lg:text-lg transition-all duration-200 hover:scale-105">
-                Ver Todos os Produtos
+              <Button className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-2xl">
+                ⚡ VER TODOS OS ENERGÉTICOS
               </Button>
             </Link>
           </div>
